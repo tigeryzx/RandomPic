@@ -47,7 +47,11 @@
             this.lbTime = new System.Windows.Forms.Label();
             this.btnStop = new System.Windows.Forms.Button();
             this.lbTotalCount = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -94,17 +98,17 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(249, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "文件名：";
+            this.label1.Text = "文 件 名：";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(249, 51);
+            this.label2.Location = new System.Drawing.Point(249, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 0;
             this.label2.Text = "大    小：";
             // 
@@ -112,9 +116,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(249, 75);
+            this.label3.Location = new System.Drawing.Point(249, 105);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 0;
             this.label3.Text = "路    径：";
             // 
@@ -122,9 +126,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(249, 123);
+            this.label4.Location = new System.Drawing.Point(249, 79);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 0;
             this.label4.Text = "尺    寸：";
             // 
@@ -134,9 +138,9 @@
             this.lbFileName.BackColor = System.Drawing.Color.Transparent;
             this.lbFileName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbFileName.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbFileName.Location = new System.Drawing.Point(307, 27);
+            this.lbFileName.Location = new System.Drawing.Point(320, 27);
             this.lbFileName.Name = "lbFileName";
-            this.lbFileName.Size = new System.Drawing.Size(58, 12);
+            this.lbFileName.Size = new System.Drawing.Size(65, 12);
             this.lbFileName.TabIndex = 3;
             this.lbFileName.Text = "lbFileName";
             // 
@@ -144,9 +148,9 @@
             // 
             this.lbSize.AutoSize = true;
             this.lbSize.BackColor = System.Drawing.Color.Transparent;
-            this.lbSize.Location = new System.Drawing.Point(308, 51);
+            this.lbSize.Location = new System.Drawing.Point(320, 53);
             this.lbSize.Name = "lbSize";
-            this.lbSize.Size = new System.Drawing.Size(58, 12);
+            this.lbSize.Size = new System.Drawing.Size(65, 12);
             this.lbSize.TabIndex = 3;
             this.lbSize.Text = "lbFileName";
             // 
@@ -155,10 +159,11 @@
             this.lbPath.AutoSize = true;
             this.lbPath.BackColor = System.Drawing.Color.Transparent;
             this.lbPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbPath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbPath.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbPath.Location = new System.Drawing.Point(307, 75);
+            this.lbPath.Location = new System.Drawing.Point(3, 0);
             this.lbPath.Name = "lbPath";
-            this.lbPath.Size = new System.Drawing.Size(58, 12);
+            this.lbPath.Size = new System.Drawing.Size(65, 12);
             this.lbPath.TabIndex = 3;
             this.lbPath.Text = "lbFileName";
             // 
@@ -166,9 +171,9 @@
             // 
             this.lbWidthAndHeight.AutoSize = true;
             this.lbWidthAndHeight.BackColor = System.Drawing.Color.Transparent;
-            this.lbWidthAndHeight.Location = new System.Drawing.Point(308, 123);
+            this.lbWidthAndHeight.Location = new System.Drawing.Point(320, 79);
             this.lbWidthAndHeight.Name = "lbWidthAndHeight";
-            this.lbWidthAndHeight.Size = new System.Drawing.Size(58, 12);
+            this.lbWidthAndHeight.Size = new System.Drawing.Size(65, 12);
             this.lbWidthAndHeight.TabIndex = 3;
             this.lbWidthAndHeight.Text = "lbFileName";
             // 
@@ -176,9 +181,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(249, 99);
+            this.label5.Location = new System.Drawing.Point(249, 155);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 0;
             this.label5.Text = "目    錄：";
             // 
@@ -187,10 +192,11 @@
             this.lbForder.AutoSize = true;
             this.lbForder.BackColor = System.Drawing.Color.Transparent;
             this.lbForder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbForder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbForder.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbForder.Location = new System.Drawing.Point(308, 99);
+            this.lbForder.Location = new System.Drawing.Point(3, 0);
             this.lbForder.Name = "lbForder";
-            this.lbForder.Size = new System.Drawing.Size(58, 12);
+            this.lbForder.Size = new System.Drawing.Size(65, 12);
             this.lbForder.TabIndex = 3;
             this.lbForder.Text = "lbFileName";
             // 
@@ -200,7 +206,7 @@
             this.lbTime.BackColor = System.Drawing.Color.Transparent;
             this.lbTime.Location = new System.Drawing.Point(213, 252);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(12, 12);
+            this.lbTime.Size = new System.Drawing.Size(11, 12);
             this.lbTime.TabIndex = 5;
             this.lbTime.Text = "T";
             // 
@@ -221,9 +227,27 @@
             this.lbTotalCount.Location = new System.Drawing.Point(623, 277);
             this.lbTotalCount.Name = "lbTotalCount";
             this.lbTotalCount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbTotalCount.Size = new System.Drawing.Size(67, 12);
+            this.lbTotalCount.Size = new System.Drawing.Size(77, 12);
             this.lbTotalCount.TabIndex = 6;
             this.lbTotalCount.Text = "lbTotalCount";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.flowLayoutPanel1.Controls.Add(this.lbPath);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(320, 105);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(370, 44);
+            this.flowLayoutPanel1.TabIndex = 7;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.flowLayoutPanel2.Controls.Add(this.lbForder);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(320, 155);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(370, 47);
+            this.flowLayoutPanel2.TabIndex = 8;
             // 
             // Form1
             // 
@@ -231,11 +255,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(702, 298);
+            this.Controls.Add(this.flowLayoutPanel2);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.lbTotalCount);
             this.Controls.Add(this.lbTime);
-            this.Controls.Add(this.lbForder);
             this.Controls.Add(this.lbWidthAndHeight);
-            this.Controls.Add(this.lbPath);
             this.Controls.Add(this.lbSize);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lbFileName);
@@ -253,6 +277,10 @@
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,6 +306,8 @@
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Label lbTotalCount;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }
 

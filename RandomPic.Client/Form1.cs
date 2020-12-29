@@ -18,7 +18,7 @@ namespace RandomPic.Client
 {
     public partial class Form1 : Form
     {
-        private string pic_keyword = "pic_";
+        private string pic_keyword = "png";
         private int NextPicTime = 10;
 
         private PicPlayer picPlayer;
