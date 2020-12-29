@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnFav = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,13 +43,16 @@
             this.lbWidthAndHeight = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lbForder = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lbTime = new System.Windows.Forms.Label();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.lbTotalCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Location = new System.Drawing.Point(31, 25);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(194, 213);
@@ -58,33 +61,32 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
-            // button1
+            // btnPrev
             // 
-            this.button1.Location = new System.Drawing.Point(31, 258);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(27, 27);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "<";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPrev.Location = new System.Drawing.Point(31, 244);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(27, 27);
+            this.btnPrev.TabIndex = 1;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnNext
             // 
-            this.button2.Location = new System.Drawing.Point(64, 258);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(27, 27);
-            this.button2.TabIndex = 2;
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnNext.Location = new System.Drawing.Point(64, 244);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(27, 27);
+            this.btnNext.TabIndex = 2;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnFav
             // 
-            this.button3.Location = new System.Drawing.Point(97, 258);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(27, 27);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "收";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnFav.Location = new System.Drawing.Point(97, 244);
+            this.btnFav.Name = "btnFav";
+            this.btnFav.Size = new System.Drawing.Size(27, 27);
+            this.btnFav.TabIndex = 2;
+            this.btnFav.Text = "收";
+            this.btnFav.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -130,6 +132,8 @@
             // 
             this.lbFileName.AutoSize = true;
             this.lbFileName.BackColor = System.Drawing.Color.Transparent;
+            this.lbFileName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbFileName.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbFileName.Location = new System.Drawing.Point(307, 27);
             this.lbFileName.Name = "lbFileName";
             this.lbFileName.Size = new System.Drawing.Size(58, 12);
@@ -150,6 +154,8 @@
             // 
             this.lbPath.AutoSize = true;
             this.lbPath.BackColor = System.Drawing.Color.Transparent;
+            this.lbPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbPath.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbPath.Location = new System.Drawing.Point(307, 75);
             this.lbPath.Name = "lbPath";
             this.lbPath.Size = new System.Drawing.Size(58, 12);
@@ -180,20 +186,44 @@
             // 
             this.lbForder.AutoSize = true;
             this.lbForder.BackColor = System.Drawing.Color.Transparent;
+            this.lbForder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbForder.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbForder.Location = new System.Drawing.Point(308, 99);
             this.lbForder.Name = "lbForder";
             this.lbForder.Size = new System.Drawing.Size(58, 12);
             this.lbForder.TabIndex = 3;
             this.lbForder.Text = "lbFileName";
             // 
-            // progressBar1
+            // lbTime
             // 
-            this.progressBar1.Location = new System.Drawing.Point(30, 244);
-            this.progressBar1.Maximum = 10;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(195, 10);
-            this.progressBar1.Step = 1;
-            this.progressBar1.TabIndex = 4;
+            this.lbTime.AutoSize = true;
+            this.lbTime.BackColor = System.Drawing.Color.Transparent;
+            this.lbTime.Location = new System.Drawing.Point(213, 252);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(12, 12);
+            this.lbTime.TabIndex = 5;
+            this.lbTime.Text = "T";
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(130, 244);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(27, 27);
+            this.btnStop.TabIndex = 2;
+            this.btnStop.Text = "停";
+            this.btnStop.UseVisualStyleBackColor = true;
+            // 
+            // lbTotalCount
+            // 
+            this.lbTotalCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTotalCount.AutoSize = true;
+            this.lbTotalCount.BackColor = System.Drawing.Color.Transparent;
+            this.lbTotalCount.Location = new System.Drawing.Point(623, 277);
+            this.lbTotalCount.Name = "lbTotalCount";
+            this.lbTotalCount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbTotalCount.Size = new System.Drawing.Size(67, 12);
+            this.lbTotalCount.TabIndex = 6;
+            this.lbTotalCount.Text = "lbTotalCount";
             // 
             // Form1
             // 
@@ -201,7 +231,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(702, 298);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.lbTotalCount);
+            this.Controls.Add(this.lbTime);
             this.Controls.Add(this.lbForder);
             this.Controls.Add(this.lbWidthAndHeight);
             this.Controls.Add(this.lbPath);
@@ -210,12 +241,15 @@
             this.Controls.Add(this.lbFileName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnStop);
+            this.Controls.Add(this.btnFav);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnNext);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -227,9 +261,9 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnFav;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -240,8 +274,10 @@
         private System.Windows.Forms.Label lbWidthAndHeight;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbForder;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lbTime;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Label lbTotalCount;
     }
 }
 

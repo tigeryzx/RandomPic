@@ -11,98 +11,111 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EverythingSharp;
 using EverythingSharp.Enums;
+using ImageProcessor;
+using ImageProcessor.Imaging;
 
 namespace RandomPic.Client
 {
     public partial class Form1 : Form
     {
-        private int TotalFileCount = 0;
-        private List<EverythingResult> SearchResultList;
+        private string pic_keyword = "pic_";
+        private int NextPicTime = 10;
+
+        private PicPlayer picPlayer;
 
         public Form1()
-        {
+        {   
+            this._CurrentValue = this.NextPicTime;
+
             InitializeComponent();
 
-            using (var everything = new Everything())
+            PicFinder picFinder = new PicFinder();
+            picPlayer = new PicPlayer(picFinder.GetAllPicInfo(this.pic_keyword), new PicPlayerOptions()
             {
-                var query = "pic_";
-                var maxResults = -1;
-                var offset = 0;
-                var sorting = Sort.NameAscending;
-                var fields = RequestFlags.FullPathAndFileName | RequestFlags.Size;
+                BackgroundHeight = this.Height,
+                BackgroundWidth = this.Width,
+                PicBoxHeight = this.pictureBox1.Height,
+                PicBoxWidth = this.pictureBox1.Width
+            });
 
+            picPlayer.OnPicNeedShow += new Action<PlayPicInfo>((obj)=>
+            {
+                this.lbTotalCount.Text = obj.PageIndexTip;
+                this.pictureBox1.Image = obj.SmallImage;
+                this.BackgroundImage = obj.BackgroundImage;
+                this.lbFileName.Text = obj.PicInfo.FileName;
+                this.lbPath.Text = obj.PicInfo.FilePath;
+                this.lbSize.Text = obj.PicInfo.FileSizeName;
+                this.lbWidthAndHeight.Text = obj.PicSize;
+                this.lbForder.Text = obj.PicInfo.FolderPath;
+            });
 
-
-                var results = everything.Search(query, maxResults, offset, sorting, fields);
-                this.TotalFileCount = results.Count();
-                this.SearchResultList = results.ToList();
-            }
+            picPlayer.NextPic();
 
             timer1.Interval = 1000;
             timer1.Tick += Timer1_Tick;
             timer1.Enabled = true;
+
+            this.btnNext.Click += new EventHandler((s, e) =>
+            {
+                this.timer1.Enabled = false;
+                this.picPlayer.NextPic();
+                this.CurrentValue = this.NextPicTime;
+                this.timer1.Enabled = true;
+            });
+
+            this.btnPrev.Click += new EventHandler((s, e) =>
+            {
+                this.timer1.Enabled = false;
+                this.picPlayer.PrevPic();
+                this.CurrentValue = this.NextPicTime;
+                this.timer1.Enabled = true;
+            });
+
+            var openFile = new EventHandler((s,e)=>
+            {
+                if (this.picPlayer.CurrentFile != null)
+                    System.Diagnostics.Process.Start(this.picPlayer.CurrentFile.FilePath);
+            });
+
+            var openFolder = new EventHandler((s,e)=>
+            {
+                if (this.picPlayer.CurrentFile != null)
+                    System.Diagnostics.Process.Start("Explorer.exe", @"/select," + this.picPlayer.CurrentFile.FilePath);
+            });
+
+            this.pictureBox1.Click += openFile;
+            this.lbFileName.Click += openFile;
+            this.lbPath.Click += openFile;
+
+            this.lbForder.Click += openFolder;
+            this.btnStop.Click += new EventHandler((s, e) => this.timer1.Enabled = !this.timer1.Enabled);
+        }
+
+
+        private int _CurrentValue = 10;
+        public int CurrentValue
+        {
+            get
+            {
+                return this._CurrentValue;
+            }
+            set
+            {
+                this._CurrentValue = value;
+                this.lbTime.Text = this._CurrentValue.ToString();
+            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            var currentValue = progressBar1.Value;
-
-            if (currentValue >= 10)
+            if (CurrentValue <= 0)
             {
-                this.progressBar1.Value = 0;
-                return;
+                CurrentValue = this.NextPicTime;
+                picPlayer.NextPic();
             }
-            currentValue += 1;
-            this.progressBar1.Value = currentValue;
-        }
-
-        private Image small_img;
-        private Image bg_img;
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (small_img != null)
-                small_img.Dispose();
-
-            if (bg_img != null)
-                bg_img.Dispose();
-
-            var rand = new Random();
-
-            var num = rand.Next(0, this.TotalFileCount);
-            var file = this.SearchResultList[num];
-
-            var img = System.Drawing.Image.FromFile(file.FullPath);
-
-            var content_w = this.pictureBox1.Width;
-            var content_h = this.pictureBox1.Height;
-
-            var small_img_w = 0;
-            var small_img_h = 0;
-
-            double rate = 1;
-
-            if (img.Width > content_w)
-                rate = Convert.ToDouble(content_w) / Convert.ToDouble(img.Width);
-            else if (img.Height > content_h)
-                rate = Convert.ToDouble(content_h) / Convert.ToDouble(img.Height);
-
-            small_img_w = Convert.ToInt32(img.Width * rate);
-            small_img_h = Convert.ToInt32(img.Height * rate);
-
-            small_img = img.GetThumbnailImage(small_img_w, small_img_h, null, (IntPtr)0);
-            this.pictureBox1.Image = small_img;
-
-            bg_img = new GaussianBlur(small_img as Bitmap).Process(10);
-            this.BackgroundImage = bg_img;
-
-
-            this.lbFileName.Text = Path.GetFileName(file.FullPath);
-            this.lbPath.Text = file.FullPath;
-            this.lbSize.Text = file.Size.ToString();
-            this.lbWidthAndHeight.Text = img.Width + "x" + img.Height;
-
-            img.Dispose();
+            else
+                CurrentValue -= 1;
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -111,5 +124,6 @@ namespace RandomPic.Client
             Pen pp = new Pen(Color.White,5);
             e.Graphics.DrawRectangle(pp, e.ClipRectangle.X, e.ClipRectangle.Y, e.ClipRectangle.X + e.ClipRectangle.Width - 1, e.ClipRectangle.Y + e.ClipRectangle.Height - 1);
         }
+
     }
 }
