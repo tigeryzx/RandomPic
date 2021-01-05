@@ -63,6 +63,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="PicFinder.cs" />
     <Compile Include="PicInfo.cs" />
     <Compile Include="PicPlayer.cs" />

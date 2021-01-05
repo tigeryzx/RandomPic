@@ -55,6 +55,17 @@ namespace RandomPic.Client
             }
         }
 
+        private ImageSizeInfo _ImageWidthAndHeight;
+        public ImageSizeInfo ImageWidthAndHeight
+        {
+            get
+            {
+                if (this._ImageWidthAndHeight == null)
+                    this._ImageWidthAndHeight = ImageHelper.GetImageSizeInfo(this.FilePath);
+                return this._ImageWidthAndHeight;
+            }
+        }
+
         public void Dispose()
         {
             if (this._Bitmap != null)

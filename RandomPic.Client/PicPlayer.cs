@@ -15,6 +15,8 @@ namespace RandomPic.Client
         public PicInfo CurrentFile { get; set; }
         private Image small_img;
         private PicPlayerOptions options;
+        private int MiniWidth = 500;
+        private int MiniHeight = 500;
 
         public event Action<PlayPicInfo> OnPicNeedShow;
 
@@ -33,6 +35,14 @@ namespace RandomPic.Client
                 nextIndex = this.CurrentFile.ShowIndex + 1;
 
             var pic = this.picInfos.SingleOrDefault(x => x.ShowIndex == nextIndex);
+
+            if(pic.ImageWidthAndHeight.Width <= this.MiniWidth && pic.ImageWidthAndHeight.Height <= this.MiniHeight)
+            {
+                this.CurrentFile = pic;
+                NextPic();
+                return;
+            }
+
             if (pic != null)
                 this.ShowPic(pic);
         }
